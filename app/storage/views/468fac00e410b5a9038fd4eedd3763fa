@@ -1,0 +1,35 @@
+<?php $__env->startSection('content'); ?>
+
+<div class="row">
+    <div class="col-lg-12">
+    <?php if(Session::has('success')): ?>
+    <div class="alert alert-dismissible alert-success"><?php echo Session::get('success'); ?></div>
+    <?php endif; ?>
+    <?php if($errors->has()): ?>
+    <?php foreach($errors->all() as $error): ?>
+    <div class="alert alert-dismissible alert-danger"><?php echo $error; ?></div>
+    <?php endforeach; ?>
+    <?php endif; ?>
+        <div class="page-header">
+            <h1 id="forms">Add new Job</h1>
+        </div>
+    </div>
+</div>
+        <div class="row">
+            <div class="col-lg-10">
+                <div class="well bs-component">
+<?php echo Form::open(array('route' => array('admin.vacancies.store'), 'class' => 'form-horizontal')); ?>
+
+    <?php echo $__env->make('admin.vacancies._common.form', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <span class="input-group-btn">
+   <?php echo Form::submit('Add', array('class' => 'btn btn-primary')); ?>
+
+   </span>
+   <?php echo Form::close(); ?>
+
+
+                </div>
+            </div>
+        </div>
+   <?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin._layout.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

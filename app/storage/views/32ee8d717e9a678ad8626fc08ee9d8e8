@@ -1,0 +1,33 @@
+<?php $__env->startSection('header'); ?>
+<h1>Login</h1>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+<h1>login</h1>
+<?php echo Form::open(array('route' => 'admin.login.post')); ?>
+
+<ul>
+    <li>
+        <?php echo Form::label('user_name', 'User Name'); ?>
+
+        <?php echo Form::text('user_name'); ?>
+
+        <?php echo $errors->first('user_name', '<p class="error">:message</p>'); ?>
+
+    </li>
+    <li>
+        <?php echo Form::label('password', 'Password'); ?>
+
+        <?php echo Form::password('password'); ?>
+
+        <?php echo $errors->first('password', '<p class="error">:message</p>'); ?>
+
+    </li>
+    <li>
+        <?php echo Form::submit('Login'); ?>
+
+    </li>
+    </ul>
+<?php echo Form::close(); ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin._layout.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

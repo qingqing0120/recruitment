@@ -1,0 +1,160 @@
+<?php $__env->startSection('header'); ?>
+
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+<?php
+
+
+?>
+<h2 id="personal">Personal Data</h2>
+<ul>
+<?php foreach($profile as $pro): ?>
+
+<li>FN: <?php echo $pro->first_name; ?></li>
+<li>LN: <?php echo $pro->last_name; ?></li>
+<li>Email: <?php echo Auth::user()->email; ?></li>
+<li>Gender: <?php if($pro->gender==1): ?>Male <?php elseif($pro->gender==2): ?> Female <?php endif; ?></li>
+<li>Nationality: <?php echo CountriesLookup::where('id', '=', $pro->nationality)->pluck('name'); ?></li>
+<li>Residence: <?php echo CountriesLookup::where('id', '=', $pro->residence)->pluck('name'); ?></li>
+<li>Mariel Status: <?php if($pro->married==2): ?> Married <?php elseif($pro->married==1): ?> Single <?php endif; ?></li>
+<li>Date of Birth: <?php echo $pro->dob; ?></li>
+<li>Mobile: <?php echo $pro->mobile; ?></li>
+<li>Phone: <?php echo $pro->phone; ?></li>
+<li>Address: <?php echo $pro->address; ?></li>
+<li>Summary: <?php echo $pro->summary; ?> </li>
+<li>Resume:
+<?php if($pro->cv_file): ?>
+ <?php if(file_exists(public_path().'\\uploads\\'.$pro->cv_file)): ?>
+   <a href="uploads/<?php echo $pro->cv_file; ?>"> Download</a>
+ <?php else: ?>
+ No upload
+ <?php endif; ?>
+ <?php else: ?>
+ No upload
+ <?php endif; ?>
+<?php endforeach; ?>
+ </li>
+</ul>
+
+<h2 id="education">Education</h2>
+<?php if(count($educations)): ?>
+    <ul>
+    <?php foreach($educations as $edu): ?>
+        <li>
+            <?php echo $edu->school; ?>
+
+
+        </li>
+    <?php endforeach; ?>
+
+    </ul>
+<?php endif; ?>
+
+<h2 id="experience">Experience</h2>
+<?php if(count($experiences)): ?>
+    <ul>
+    <?php foreach($experiences as $experience): ?>
+        <li>
+            <?php echo $experience->company; ?>
+
+
+        </li>
+    <?php endforeach; ?>
+
+    </ul>
+
+<?php endif; ?>
+<h2 id="achievements">Achievements</h2>
+<?php if(count($achievements)): ?>
+    <ul>
+    <?php foreach($achievements as $achievement): ?>
+        <li>
+            <?php echo $achievement->name; ?>
+
+
+        </li>
+    <?php endforeach; ?>
+
+    </ul>
+
+<?php endif; ?>
+<h2 id="courses">Courses</h2>
+<?php if(count($courses)): ?>
+    <ul>
+    <?php foreach($courses as $course): ?>
+        <li>
+            <?php echo $course->name; ?>
+
+
+        </li>
+    <?php endforeach; ?>
+
+    </ul>
+
+<?php endif; ?>
+
+<h2 id="certificates">Certificates</h2>
+<?php if(count($certificates)): ?>
+    <ul>
+    <?php foreach($certificates as $certificate): ?>
+        <li>
+            <?php echo $certificate->name; ?>
+
+
+        </li>
+    <?php endforeach; ?>
+
+    </ul>
+
+<?php endif; ?>
+<h2 id="skills">Skills</h2>
+<?php if(count($skills)): ?>
+    <ul>
+    <?php foreach($skills as $skill): ?>
+        <li>
+            <?php echo $skill->name; ?>
+
+
+        </li>
+    <?php endforeach; ?>
+
+    </ul>
+
+<?php endif; ?>
+<h2 id="languages">Languages</h2>
+<?php if(count($languages)): ?>
+    <ul>
+    <?php foreach($languages as $language): ?>
+        <li>
+            <?php echo LanguagesLookup::where('id', '=', $language->lang_id)->pluck('name'); ?>
+
+
+        </li>
+    <?php endforeach; ?>
+
+    </ul>
+
+<?php endif; ?>
+<h2 id="catOfInterest">Categories of Interest</h2>
+<?php if(count($interests)): ?>
+    <ul>
+    <?php foreach($interests as $interest): ?>
+        <li>
+            <?php echo CategoriesLookup::where('id', '=', $interest->cat_id)->pluck('name'); ?>
+
+            <?php if($interest->notifications==1): ?>
+            <span> receive</span>
+            <?php endif; ?>
+
+        </li>
+    <?php endforeach; ?>
+
+    </ul>
+
+<?php endif; ?>
+
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin._layout.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,27 @@
+<?php $__env->startSection('header'); ?>
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+<?php echo link_to_route('experiences.create', 'Add New'); ?>
+
+<?php if(count($experiences)): ?>
+    <ul>
+    <?php foreach($experiences as $experience): ?>
+        <li>
+            <?php echo link_to_route('experiences.edit', $experience->company, array($experience->id)); ?>
+
+            <?php echo Form::open(array('route' => array('experiences.destroy', $experience->id), 'method' => 'delete', 'class' => 'destroy')); ?>
+
+            <?php echo Form::submit('Delete'); ?>
+
+            <?php echo Form::close(); ?>
+
+        </li>
+    <?php endforeach; ?>
+
+    </ul>
+
+<?php endif; ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('profiles._layout.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

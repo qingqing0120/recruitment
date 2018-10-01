@@ -1,0 +1,38 @@
+<?php $__env->startSection('header'); ?>
+
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+
+<ul>
+<?php foreach($profile as $pro): ?>
+<?php echo link_to_route('profiles.edit', 'Edit', array($pro->id)); ?>
+
+<li>FN: <?php echo $pro->first_name; ?></li>
+<li>LN: <?php echo $pro->last_name; ?></li>
+<li>Gender: <?php if($pro->gender==1): ?>Male <?php elseif($pro->gender==2): ?> Female <?php endif; ?></li>
+<li>Nationality: <?php echo CountriesLookup::where('id', '=', $pro->nationality)->pluck('name'); ?></li>
+<li>Residence: <?php echo CountriesLookup::where('id', '=', $pro->residence)->pluck('name'); ?></li>
+<li>Mariel Status: <?php if($pro->married==2): ?> Married <?php elseif($pro->married==1): ?> Single <?php endif; ?></li>
+<li>Date of Birth: <?php echo $pro->dob; ?></li>
+<li>Mobile: <?php echo $pro->mobile; ?></li>
+<li>Phone: <?php echo $pro->phone; ?></li>
+<li>Address: <?php echo $pro->address; ?></li>
+<li>Summary: <?php echo $pro->summary; ?> </li>
+<li>Resume:
+<?php if($pro->cv_file): ?>
+ <?php if(file_exists(public_path().'\\uploads\\'.$pro->cv_file)): ?>
+   <a href="uploads/<?php echo $pro->cv_file; ?>"> Download</a>
+ <?php else: ?>
+ No upload
+ <?php endif; ?>
+<?php else: ?>
+No upload
+<?php endif; ?>
+   </li>
+<?php endforeach; ?>
+</ul>
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('profiles._layout.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

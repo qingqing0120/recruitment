@@ -1,0 +1,52 @@
+ <fieldset>
+<div class="form-group">
+<?php echo Form::label('name', 'Name', array('class' => 'col-lg-2 control-label')); ?>
+
+<div class="col-lg-10">
+<?php echo Form::text('name', null, array('class' => 'form-control', 'placeholder' => 'Name')); ?>
+
+</div>
+<?php echo $errors->first('name', '<p class="error">:message</p>'); ?>
+
+</div>
+<div class="form-group">
+<?php echo Form::label('authority', 'Authority', array('class' => 'col-lg-2 control-label')); ?>
+
+<div class="col-lg-10">
+<?php echo Form::text('authority', null, array('class' => 'form-control', 'placeholder' => 'Authority')); ?>
+
+</div>
+<?php echo $errors->first('authority', '<p class="error">:message</p>'); ?>
+
+</div>
+<div class="form-group">
+<?php echo Form::label('license_num', 'License Number', array('class' => 'col-lg-2 control-label')); ?>
+
+<div class="col-lg-10">
+<?php echo Form::text('license_num', null, array('class' => 'form-control', 'placeholder' => 'license Number')); ?>
+
+</div>
+<?php echo $errors->first('license_num', '<p class="error">:message</p>'); ?>
+
+</div>
+<div class="form-group">
+<?php echo Form::label('url', 'Link', array('class' => 'col-lg-2 control-label')); ?>
+
+<div class="col-lg-10">
+<?php echo Form::text('url', null, array('class' => 'form-control', 'placeholder' => 'Link')); ?>
+
+</div>
+<?php echo $errors->first('url', '<p class="error">:message</p>'); ?>
+
+</div>
+<div class="form-group">
+<?php echo Form::label('date', 'Date', array('class' => 'col-lg-2 control-label')); ?>
+
+<div class="col-lg-10">
+<?php echo Form::text('date', null, array('class' => 'form-control', 'placeholder' => 'Date', 'id' => 'datepicker')); ?>
+
+</div>
+<?php echo $errors->first('date', '<p class="error">:message</p>'); ?>
+
+</div>
+</fieldset>

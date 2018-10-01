@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Vacancies</title>
+<?php echo HTML::style('css/bootstrap.min.css'); ?>
+
+<?php echo HTML::style('css/jquery-ui.theme.css'); ?>
+
+ <?php echo HTML::script('js/jquery.js'); ?>
+
+ <?php echo HTML::style('css/jquery-ui.css'); ?>
+
+ <?php echo HTML::script('js/jquery-ui.js'); ?>
+
+
+
+    <!-- Referencing Bootstrap CSS that is hosted locally -->
+
+      <script>
+      $(function() {
+        $( "#datepicker" ).datepicker();
+      });
+      </script>
+       <?php echo $__env->yieldContent('intoheader'); ?>
+  </head>
+  <body>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <?php echo link_to_route('home', Lang::get('site.name'), null,array('class' => 'navbar-brand')); ?>
+
+            </div>
+            <div id="navbar-main" class="navbar-collapse collapse">
+
+
+              <ul class="nav navbar-nav">
+              <li><?php echo link_to_route('home', 'Jobs'); ?></li>
+               <?php if(Auth::check()): ?>
+              <?php if(Auth::user()->type==0): ?>
+               <li>
+                 <?php echo link_to_route('dashboard', 'Dashboard'); ?>
+
+                </li>
+                  <li class="dropdown">
+                    <a id="themes" href="#" data-toggle="dropdown" class="dropdown-toggle"><?php echo Lang::get('site.profile'); ?><span class="caret"></span></a>
+                    <ul aria-labelledby="themes" class="dropdown-menu">
+                      <li><?php echo link_to_route('dashboard', 'Personal Data', '#personal'); ?></li>
+                      <li> <?php echo link_to_route('dashboard', 'Education', '#education'); ?></li>
+                      <li><?php echo link_to_route('dashboard', 'Experience', '#experience'); ?></li>
+                      <li><?php echo link_to_route('dashboard', 'Achievements', '#achievements'); ?></li>
+                      <li><?php echo link_to_route('dashboard', 'Courses', '#courses'); ?></li>
+                      <li><?php echo link_to_route('dashboard', 'Certificates', '#certificates'); ?></li>
+                      <li><?php echo link_to_route('dashboard', 'Skills', '#skills'); ?></li>
+                      <li><?php echo link_to_route('dashboard', 'languages', '#languages'); ?></li>
+                      <li><?php echo link_to_route('dashboard', 'cat of Interest' ,'#catOfInterest'); ?></li>
+
+                    </ul>
+                  </li>
+                <li>
+                  <?php echo link_to_route('applications', 'Applications Status'); ?>
+
+                </li>
+                <?php endif; ?>
+                <?php if(Auth::user()->type==1): ?>
+                <li>
+                  <?php echo link_to_route('admin', 'Admin'); ?>
+
+                </li>
+                   <li><?php echo link_to_route('search', 'Search'); ?> </li>
+                <?php endif; ?>
+              </ul>
+              <?php endif; ?>
+              <ul class="nav navbar-nav navbar-right">
+              <?php if(Auth::check()): ?>
+             <li> <?php echo link_to_route('logout', 'Logout'); ?></li>
+              <?php else: ?>
+           <li>   <?php echo link_to_route('user.create', 'Register'); ?></li>
+             <li> <?php echo link_to_route('login', 'Login'); ?></li>
+              <?php endif; ?>
+                           </ul>
+
+            </div>
+          </div>
+        </div>
+
+<header>
+<div class="container">
+<?php echo $__env->yieldContent('header'); ?>
+</div>
+</header>
+<div class="container">
+<div class="bs-docs-section">
+<div class="page-header">
+        <div class="row">
+          <div class="col-lg-12">
+           <?php echo $__env->yieldContent('content'); ?>
+          </div>
+          </div>
+        </div>
+      </div>
+</div>
+<foort>
+<div class="container">
+Developed by CSE686 IP Team
+</div>
+</foort>
+<?php echo HTML::script('js/bootstrap.min.js'); ?>
+
+  </body>
+</html>

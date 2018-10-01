@@ -1,0 +1,27 @@
+<?php $__env->startSection('header'); ?>
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+<?php echo link_to_route('skills.create', 'Add New'); ?>
+
+<?php if(count($skills)): ?>
+    <ul>
+    <?php foreach($skills as $skill): ?>
+        <li>
+            <?php echo link_to_route('skills.edit', $skill->name, array($skill->id)); ?>
+
+            <?php echo Form::open(array('route' => array('skills.destroy', $skill->id), 'method' => 'delete', 'class' => 'destroy')); ?>
+
+            <?php echo Form::submit('Delete'); ?>
+
+            <?php echo Form::close(); ?>
+
+        </li>
+    <?php endforeach; ?>
+
+    </ul>
+
+<?php endif; ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('profiles._layout.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

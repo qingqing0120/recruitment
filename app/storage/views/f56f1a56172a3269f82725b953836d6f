@@ -1,0 +1,32 @@
+ <fieldset>
+<div class="form-group">
+        <?php echo Form::label('name', 'Name', array('class' => 'col-lg-2 control-label')); ?>
+
+        <div class="col-lg-10">
+        <?php echo Form::text('name', null, array('class' => 'form-control', 'placeholder' => 'Name')); ?>
+
+        </div>
+        <?php echo $errors->first('name', '<p class="text-danger">:message</p>'); ?>
+
+           </div>
+           <div class="form-group">
+        <?php echo Form::label('description', 'Description', array('class' => 'col-lg-2 control-label')); ?>
+
+        <div class="col-lg-10">
+        <?php echo Form::textarea('description', null, array('class' => 'form-control', 'placeholder' => 'Description')); ?>
+
+        </div>
+        <?php echo $errors->first('description', '<p class="text-danger">:message</p>'); ?>
+
+        </div>
+        <div class="form-group">
+        <?php echo Form::label('date', 'Date', array('class' => 'col-lg-2 control-label')); ?>
+
+        <div class="col-lg-10">
+        <?php echo Form::text('date', null, array('class' => 'form-control', 'placeholder' => 'Date', 'id' => 'datepicker')); ?>
+
+        </div>
+        <?php echo $errors->first('date', '<p class="text-danger">:message</p>'); ?>
+
+        </div>
+        </fieldset>

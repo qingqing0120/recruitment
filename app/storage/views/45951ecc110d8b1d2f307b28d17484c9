@@ -1,0 +1,26 @@
+<?php $__env->startSection('header'); ?>
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+<?php echo link_to_route('education.create', 'Add New'); ?>
+
+<?php if(count($educations)): ?>
+    <ul>
+    <?php foreach($educations as $edu): ?>
+        <li>
+            <?php echo link_to_route('education.edit', $edu->school, array($edu->id)); ?>
+
+            <?php echo Form::open(array('route' => array('education.destroy', $edu->id), 'method' => 'delete', 'class' => 'destroy')); ?>
+
+            <?php echo Form::submit('Delete'); ?>
+
+            <?php echo Form::close(); ?>
+
+        </li>
+    <?php endforeach; ?>
+
+    </ul>
+<?php endif; ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('profiles._layout.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

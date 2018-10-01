@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Profile</title>
+    <!-- Referencing Bootstrap CSS that is hosted locally -->
+    <?php echo HTML::style('css/style.css'); ?>
+
+
+  </head>
+  <body>
+<header>
+<div class="container">
+Menu:
+ <?php echo link_to_route('dashboard', 'Dashboard'); ?>
+
+| <?php echo link_to_route('profile', 'Personal Data'); ?>
+
+| <?php echo link_to_route('education.index', 'Education'); ?>
+
+| <?php echo link_to_route('experiences', 'Experience'); ?>
+
+| <?php echo link_to_route('achievements', 'Achievements'); ?>
+
+| <?php echo link_to_route('courses', 'Courses'); ?>
+
+| <?php echo link_to_route('certificates', 'Certificates'); ?>
+
+| <?php echo link_to_route('skills', 'Skills'); ?>
+
+| <?php echo link_to_route('languages', 'languages'); ?>
+
+| <?php echo link_to_route('applications', 'Applications Status'); ?>
+
+| <?php echo link_to_route('interests.index', 'cat of Interest'); ?>
+
+| <?php echo link_to_route('admin', 'Admin'); ?>
+
+<?php echo $__env->yieldContent('header'); ?>
+</div>
+</header>
+
+<main class="container">
+<?php echo $__env->yieldContent('content'); ?>
+</main>
+
+<foort>
+<div class="container">
+<?php echo link_to_route('home', 'Home'); ?>
+
+</div>
+</foort>
+  </body>
+</html>

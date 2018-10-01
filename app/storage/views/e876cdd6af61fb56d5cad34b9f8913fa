@@ -1,0 +1,27 @@
+<?php $__env->startSection('header'); ?>
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+<?php echo link_to_route('achievements.create', 'Add New'); ?>
+
+<?php if(count($achievements)): ?>
+    <ul>
+    <?php foreach($achievements as $achievement): ?>
+        <li>
+            <?php echo link_to_route('achievements.edit', $achievement->name, array($achievement->id)); ?>
+
+            <?php echo Form::open(array('route' => array('achievements.destroy', $achievement->id), 'method' => 'delete', 'class' => 'destroy')); ?>
+
+            <?php echo Form::submit('Delete'); ?>
+
+            <?php echo Form::close(); ?>
+
+        </li>
+    <?php endforeach; ?>
+
+    </ul>
+
+<?php endif; ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('_layout.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

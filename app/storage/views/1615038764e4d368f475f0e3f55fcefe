@@ -1,0 +1,51 @@
+ <?php $__env->startSection('content'); ?>
+
+<div class="page-header">
+
+
+ <?php if(Auth::user()): ?>
+     <?php if(ApplicantsVacancies::getIfApplied($vacancy->id)): ?>
+     <div class="alert alert-dismissible alert-success">
+    <p>You have applied for this job!</p>
+    </div>
+     <?php endif; ?>
+<?php endif; ?>
+<h2>Title: <?php echo $vacancy->title; ?></h2>
+
+<p>Posting Date: <?php echo $vacancy->open_date; ?></p>
+<p>Closing Date: <?php echo $vacancy->closing_date; ?></p>
+<p>Classification: <?php echo JobCalssificationsLookup::where('id', '=' ,$vacancy->classification)->pluck('name'); ?></p>
+<p>Company: <a href="<?php echo CompaniesLookup::where('id', '=', $vacancy->company_id)->pluck('url'); ?>" title="<?php echo CompaniesLookup::where('id', '=', $vacancy->company_id)->pluck('name'); ?>" target="_blank"> <?php echo CompaniesLookup::where('id', '=', $vacancy->company_id)->pluck('name'); ?></a></p>
+<p>Category: <?php echo CategoriesLookup::where('id', '=', $vacancy->cat_id)->pluck('name'); ?></p>
+<p>Salary: <?php echo $vacancy->salary; ?></p>
+<p>Summary: <br/><?php echo $vacancy->summary; ?></p>
+<p>Description: <br/><?php echo $vacancy->description; ?></p>
+<p>Responsibilities: <br/><?php echo $vacancy->responsibilities; ?></p>
+<p>Qualifications and Experience: <br/><?php echo $vacancy->qualifications_experience; ?></p>
+<p>Skills Knowledge: <br/><?php echo $vacancy->skills_knowledge; ?></p>
+<?php if(Auth::user()): ?>
+<?php if ( ! (ApplicantsVacancies::getIfApplied($vacancy->id))): ?>
+<?php echo Form::open(array('route' => array('vacancy.apply', $vacancy->id), 'class' => 'form-horizontal')); ?>
+
+
+        <?php echo Form::label('years_of_experience', 'Years of Experience', array('class' => 'col-lg-2 control-label')); ?>
+
+        <?php echo Form::text('years_of_experience',0 , array( 'placeholder' => 'Years of Experience', 'size' => 5)); ?>
+
+
+        <?php echo Form::submit('Apply', array('class' => 'btn btn-primary')); ?>
+
+
+<?php echo Form::close(); ?>
+
+<?php endif; ?>
+<?php else: ?>
+<?php echo link_to_route('login', 'login to apply', null, array('class' => 'btn btn-info')); ?>
+
+
+<?php endif; ?>
+</div>
+
+ <?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('._layout.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

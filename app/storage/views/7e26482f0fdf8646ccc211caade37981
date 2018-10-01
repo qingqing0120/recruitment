@@ -1,0 +1,20 @@
+<?php $__env->startSection('header'); ?>
+<?php echo link_to_route('dashboard', 'Your Profile'). " | "; ?>
+
+<?php if(Auth::check()): ?>
+<?php echo link_to_route('logout', 'Logout'); ?>
+
+<?php else: ?>
+<?php echo link_to_route('user.create', 'Register'); ?>
+
+<?php echo link_to_route('login', 'Login'); ?>
+
+<?php endif; ?>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+<div class="bs-docs-section">
+<h2>Page Not Found</h2>
+<p>Something went wrong. </p>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('_layout.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
